@@ -1,0 +1,152 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>登陆</title>
+<link href="/static/css/base.css" rel="stylesheet" type="text/css">
+<link href="/static/css/css.css" rel="stylesheet" type="text/css">
+<script src="/static/js/jquery-2.1.1.min.js"></script>
+<style>
+.tab {
+	overflow: hidden;
+	margin-top: 20px; margin-bottom:-1px;
+}
+.tab li {
+	display: block;
+	float: left;
+	width: 100px;padding:10px 20px; cursor:pointer; border:1px solid #ccc; 
+}
+.tab li.on {
+	background: #90B831; color:#FFF;padding:10px 20px;
+}
+.conlist {padding:30px; border:1px solid #ccc; width:300px;}
+.conbox {
+	display: none;
+}
+</style>
+<script>
+$(function(){
+	$(".tab li").each(function(i){
+		$(this).click(function(){
+		$(this).addClass("on").siblings().removeClass("on");
+		$(".conlist .conbox").eq(i).show().siblings().hide();
+		})
+	})
+})
+</script>
+</head>
+
+<body>
+<div class="login-top">
+    <div class="wrapper">
+        <div class="fl font30">LOGO</div>
+        <div class="fr">您好，欢迎为生活充电在线！</div>
+    </div>
+</div>
+<div class="l_main">
+    <div class="l_bttitle2"> 
+        <!-- <h2>登录</h2>-->
+        <h2><a href="/">< 返回首页</a></h2>
+    </div>
+    <div class="loginbox fl">
+        <div class="tab">
+            <ul>
+                <li class="on">我是买家</li>
+{#                <li>我是卖家</li>#}
+            </ul>
+        </div>
+
+        <div class="conlist">
+             <form action="log_hand" method="post">
+                 {% csrf_token %}
+            <div class="conbox" style="display:block;">
+                <p>
+                    <input type="text"  name="username" id="uname" value="{{ uname }}"class="loginusername">
+                </p>
+                <p>
+                    <input type="password" name="pwd" id="upwd" class="loginuserpassword">
+                </p>
+                <p><span class="fl fntz14 "><a href="reg" style="color:#ff6000">立即注册</a></span>
+                    <span class="fr fntz12 "><a href="#">忘记密码？</a></span>
+                    <input  id="jizhumima" type="checkbox" name="remember" value='1' class=" ">
+                    <label for="jizhumima" class="">记住密码</label>
+                    </p>
+                <p>
+                    <input type="submit" class="loginbtn" value="登  录">
+                </p>
+            </div>
+             </form>
+{#            <div class="conbox">#}
+{#            	<p>#}
+{#                    <input type="text" class="loginusername">#}
+{#                </p>#}
+{#                <p>#}
+{#                    <input type="password" class="loginuserpassword">#}
+{#                </p>#}
+{#                <p><span class="fl fntz14 margin-t10"><a href="#" style="color:#ff6000">立即注册</a></span><span class="fr fntz12 margin-t10"><a href="#">忘记密码？</a></span></p>#}
+{#                <p>#}
+{#                    <input type="button" class="loginbtn" value="登  录">#}
+{#                </p>#}
+{#            </div>#}
+        </div>
+    </div>
+<script>
+
+    var ca = document.cookie.split(';');
+	for(var i=0; i<ca.length; i++) {
+        var c = ca[i].trim()
+        if (c.indexOf('uname') == 0){
+            $('#uname').val(decodeURI(c.substring(9, c.length-2).replace(/\\\\x/g,'%')));}
+        if (c.indexOf('upwd') == 0) $('#upwd').val(c.substring(5, c.length));
+    }
+    if (1==={{ error}}){
+        alert("用户名或者密码错误，请重新输入！")
+    }
+</script>
+
+    
+    <div class="fr margin-r100 margin-t45"><img src="/static/images/login-pic.jpg" width="507" height="325"></div>
+</div>
+</body>
+</html>
+<script>
+
+    var ca = document.cookie.split(';');
+	for(var i=0; i<ca.length; i++) {
+        var c = ca[i].trim()
+        if (c.indexOf('uname') == 0){
+            un= c.substring(8, c.length-1)
+            if(c.indexOf('\\x')>0){
+                un=decodeURI(c.substring(9, c.length-2).replace(/\\\\x/g,'%'))
+            }
+            $('#uname').val(un)
+        }
+        if (c.indexOf('upwd') == 0) $('#upwd').val(c.substring(5, c.length));
+    }
+    if (1==={{ error}}){
+        alert("用户名或者密码错误，请重新输入！")
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
