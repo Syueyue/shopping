@@ -1,1 +1,1 @@
-creating a new brance is quick&simple
+creating a new brance is quick AND simple
